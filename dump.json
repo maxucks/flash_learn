@@ -1,0 +1,716 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "username": "alice",
+      "xp": 120
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "name": "English",
+      "icon": "🇬🇧"
+    }
+  ],
+  "words": [
+    {
+      "id": 1,
+      "languageId": 1,
+      "value": "corrode"
+    },
+    {
+      "id": 2,
+      "languageId": 1,
+      "value": "erode"
+    },
+    {
+      "id": 3,
+      "languageId": 1,
+      "value": "eradicate"
+    },
+    {
+      "id": 4,
+      "languageId": 1,
+      "value": "eliminate"
+    },
+    {
+      "id": 5,
+      "languageId": 1,
+      "value": "annihilate"
+    },
+    {
+      "id": 6,
+      "languageId": 1,
+      "value": "destroy"
+    },
+    {
+      "id": 7,
+      "languageId": 1,
+      "value": "remove"
+    },
+    {
+      "id": 8,
+      "languageId": 1,
+      "value": "create"
+    },
+    {
+      "id": 9,
+      "languageId": 1,
+      "value": "weaken"
+    },
+    {
+      "id": 10,
+      "languageId": 1,
+      "value": "obliterate"
+    },
+    {
+      "id": 11,
+      "languageId": 1,
+      "value": "exterminate"
+    },
+    {
+      "id": 12,
+      "languageId": 1,
+      "value": "build"
+    },
+    {
+      "id": 13,
+      "languageId": 1,
+      "value": "damage"
+    }
+  ],
+  "usecases": [
+    {
+      "id": 1,
+      "imgUrl": null,
+      "description": "to destroy or damage metal or stone by chemical action (acid, rust, oxidation)",
+      "translation": "разъедать (о кислоте, ржавчине)",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 2,
+      "imgUrl": null,
+      "description": "to gradually destroy or undermine a feeling, relationship, or quality",
+      "translation": "подтачивать, разъедать (перен.)",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 3,
+      "imgUrl": null,
+      "description": "to wear away the surface of rock, soil, or land by wind, water, or other natural forces",
+      "translation": "размывать, выветривать",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 4,
+      "imgUrl": null,
+      "description": "to gradually weaken or destroy something abstract such as trust, power, or value",
+      "translation": "подрывать, постепенно ослаблять",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 5,
+      "imgUrl": null,
+      "description": "to destroy or get rid of something completely, especially something bad and widespread",
+      "translation": "искоренять, уничтожать полностью",
+      "rudeness": 0,
+      "formality": 2
+    },
+    {
+      "id": 6,
+      "imgUrl": null,
+      "description": "to wipe out a disease, pest, or invasive species completely",
+      "translation": "истреблять, ликвидировать (болезнь)",
+      "rudeness": 0,
+      "formality": 2
+    },
+    {
+      "id": 7,
+      "imgUrl": null,
+      "description": "to completely remove or get rid of something, often neutral in tone",
+      "translation": "устранять, удалять",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 8,
+      "imgUrl": null,
+      "description": "to defeat a competitor so that they leave a tournament",
+      "translation": "выбивать, исключать (из соревнования)",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 9,
+      "imgUrl": null,
+      "description": "to destroy something completely and violently; extreme physical destruction",
+      "translation": "уничтожать, аннигилировать",
+      "rudeness": 1,
+      "formality": 1
+    },
+    {
+      "id": 10,
+      "imgUrl": null,
+      "description": "to defeat an opponent overwhelmingly",
+      "translation": "разгромить, разнести в пух и прах",
+      "rudeness": 1,
+      "formality": 0
+    },
+    {
+      "id": 11,
+      "imgUrl": null,
+      "description": "to destroy something completely so that no trace remains; often dramatic",
+      "translation": "стирать с лица земли, уничтожать",
+      "rudeness": 1,
+      "formality": 1
+    },
+    {
+      "id": 12,
+      "imgUrl": null,
+      "description": "to kill all members of a group, especially pests or a targeted population",
+      "translation": "истреблять, уничтожать поголовно",
+      "rudeness": 1,
+      "formality": 1
+    },
+    {
+      "id": 13,
+      "imgUrl": null,
+      "description": "to damage something so badly that it no longer exists or can be used",
+      "translation": "разрушать, уничтожать",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 14,
+      "imgUrl": null,
+      "description": "to harm something so that it is less useful or valuable",
+      "translation": "повреждать, наносить ущерб",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 15,
+      "imgUrl": null,
+      "description": "to take something away from a place or position",
+      "translation": "удалять, убирать",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 16,
+      "imgUrl": null,
+      "description": "to make or become less strong",
+      "translation": "ослаблять",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 17,
+      "imgUrl": null,
+      "description": "to bring something into existence",
+      "translation": "создавать",
+      "rudeness": 0,
+      "formality": 1
+    },
+    {
+      "id": 18,
+      "imgUrl": null,
+      "description": "to construct something by putting parts together",
+      "translation": "строить, возводить",
+      "rudeness": 0,
+      "formality": 1
+    }
+  ],
+  "words_usecases": [
+    {
+      "wordId": 1,
+      "usecaseId": 1,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 1,
+      "usecaseId": 2,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 2,
+      "usecaseId": 3,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 2,
+      "usecaseId": 4,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 3,
+      "usecaseId": 5,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 3,
+      "usecaseId": 6,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 4,
+      "usecaseId": 7,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 4,
+      "usecaseId": 8,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 5,
+      "usecaseId": 9,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 5,
+      "usecaseId": 10,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 10,
+      "usecaseId": 11,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 11,
+      "usecaseId": 12,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 6,
+      "usecaseId": 13,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 13,
+      "usecaseId": 14,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 7,
+      "usecaseId": 15,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 9,
+      "usecaseId": 16,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 8,
+      "usecaseId": 17,
+      "usedAs": "verb"
+    },
+    {
+      "wordId": 12,
+      "usecaseId": 18,
+      "usedAs": "verb"
+    }
+  ],
+  "examples": [
+    {
+      "id": 1,
+      "usecaseId": 1,
+      "value": "Acid rain corroded the bronze statue."
+    },
+    {
+      "id": 2,
+      "usecaseId": 1,
+      "value": "Salt water corrodes the hull of the ship."
+    },
+    {
+      "id": 3,
+      "usecaseId": 2,
+      "value": "Jealousy corroded their friendship over the years."
+    },
+    {
+      "id": 4,
+      "usecaseId": 3,
+      "value": "The river eroded the canyon walls over millions of years."
+    },
+    {
+      "id": 5,
+      "usecaseId": 3,
+      "value": "Wind erosion shaped the desert rocks."
+    },
+    {
+      "id": 6,
+      "usecaseId": 4,
+      "value": "Inflation erodes people's savings."
+    },
+    {
+      "id": 7,
+      "usecaseId": 4,
+      "value": "Repeated scandals eroded public trust in the government."
+    },
+    {
+      "id": 8,
+      "usecaseId": 5,
+      "value": "The government vowed to eradicate corruption."
+    },
+    {
+      "id": 9,
+      "usecaseId": 5,
+      "value": "We must eradicate this disease from the population."
+    },
+    {
+      "id": 10,
+      "usecaseId": 6,
+      "value": "Smallpox was eradicated worldwide in 1980."
+    },
+    {
+      "id": 11,
+      "usecaseId": 7,
+      "value": "We need to eliminate all errors from the report."
+    },
+    {
+      "id": 12,
+      "usecaseId": 7,
+      "value": "The new system eliminates the need for paperwork."
+    },
+    {
+      "id": 13,
+      "usecaseId": 8,
+      "value": "The team was eliminated in the semifinals."
+    },
+    {
+      "id": 14,
+      "usecaseId": 9,
+      "value": "The bomb annihilated the entire block."
+    },
+    {
+      "id": 15,
+      "usecaseId": 9,
+      "value": "A single hurricane can annihilate coastal towns."
+    },
+    {
+      "id": 16,
+      "usecaseId": 10,
+      "value": "They annihilated the opposing team 10–0."
+    },
+    {
+      "id": 17,
+      "usecaseId": 11,
+      "value": "The explosion obliterated the building."
+    },
+    {
+      "id": 18,
+      "usecaseId": 11,
+      "value": "Time obliterated all evidence of the settlement."
+    },
+    {
+      "id": 19,
+      "usecaseId": 12,
+      "value": "The landlord hired a company to exterminate the rats."
+    },
+    {
+      "id": 20,
+      "usecaseId": 12,
+      "value": "The regime tried to exterminate the entire ethnic group."
+    },
+    {
+      "id": 21,
+      "usecaseId": 13,
+      "value": "The fire destroyed the warehouse."
+    },
+    {
+      "id": 22,
+      "usecaseId": 13,
+      "value": "The earthquake destroyed hundreds of homes."
+    },
+    {
+      "id": 23,
+      "usecaseId": 14,
+      "value": "The storm damaged the roof."
+    },
+    {
+      "id": 24,
+      "usecaseId": 14,
+      "value": "Smoking damages your lungs."
+    },
+    {
+      "id": 25,
+      "usecaseId": 15,
+      "value": "Please remove your shoes before entering."
+    },
+    {
+      "id": 26,
+      "usecaseId": 15,
+      "value": "The surgeon removed the tumor successfully."
+    },
+    {
+      "id": 27,
+      "usecaseId": 16,
+      "value": "The illness weakened him considerably."
+    },
+    {
+      "id": 28,
+      "usecaseId": 17,
+      "value": "She created a beautiful painting."
+    },
+    {
+      "id": 29,
+      "usecaseId": 18,
+      "value": "They built a new bridge over the river."
+    },
+    {
+      "id": 30,
+      "usecaseId": 18,
+      "value": "She built a successful career from scratch."
+    }
+  ],
+  "usecases_relations": [
+    {
+      "leftUsecaseId": 1,
+      "rightUsecaseId": 3,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 3,
+      "rightUsecaseId": 1,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 5,
+      "rightUsecaseId": 7,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 7,
+      "rightUsecaseId": 5,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 7,
+      "rightUsecaseId": 9,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 9,
+      "rightUsecaseId": 7,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 5,
+      "rightUsecaseId": 9,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 9,
+      "rightUsecaseId": 5,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 9,
+      "rightUsecaseId": 11,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 11,
+      "rightUsecaseId": 9,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 5,
+      "rightUsecaseId": 12,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 12,
+      "rightUsecaseId": 5,
+      "value": "synonym"
+    },
+    {
+      "leftUsecaseId": 13,
+      "rightUsecaseId": 17,
+      "value": "antonym"
+    },
+    {
+      "leftUsecaseId": 17,
+      "rightUsecaseId": 13,
+      "value": "antonym"
+    },
+    {
+      "leftUsecaseId": 13,
+      "rightUsecaseId": 18,
+      "value": "antonym"
+    },
+    {
+      "leftUsecaseId": 18,
+      "rightUsecaseId": 13,
+      "value": "antonym"
+    },
+    {
+      "leftUsecaseId": 7,
+      "rightUsecaseId": 17,
+      "value": "antonym"
+    },
+    {
+      "leftUsecaseId": 17,
+      "rightUsecaseId": 7,
+      "value": "antonym"
+    },
+    {
+      "leftUsecaseId": 13,
+      "rightUsecaseId": 9,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 9,
+      "rightUsecaseId": 13,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 13,
+      "rightUsecaseId": 5,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 5,
+      "rightUsecaseId": 13,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 13,
+      "rightUsecaseId": 11,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 11,
+      "rightUsecaseId": 13,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 13,
+      "rightUsecaseId": 12,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 12,
+      "rightUsecaseId": 13,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 15,
+      "rightUsecaseId": 7,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 7,
+      "rightUsecaseId": 15,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 16,
+      "rightUsecaseId": 3,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 3,
+      "rightUsecaseId": 16,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 14,
+      "rightUsecaseId": 1,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 1,
+      "rightUsecaseId": 14,
+      "value": "hyponym"
+    },
+    {
+      "leftUsecaseId": 14,
+      "rightUsecaseId": 3,
+      "value": "hypernym"
+    },
+    {
+      "leftUsecaseId": 3,
+      "rightUsecaseId": 14,
+      "value": "hyponym"
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "content": "corrode vs erode\n• corrode — chemical action (acid, rust, oxidation). Typical object: metal. e.g. 'acid corrodes steel'.\n• erode — physical/mechanical action (wind, water, friction). Typical object: rock, soil, land. e.g. 'the river erodes the bank'.\n• Figuratively both mean 'slowly weaken'. Corrode implies internal, chemical-like decay ('jealousy corroded the bond'); erode implies external, gradual wearing ('scandals eroded trust')."
+    },
+    {
+      "id": 2,
+      "content": "eradicate vs eliminate vs annihilate\n• eradicate — destroy completely, usually something bad and widespread (disease, poverty, corruption). Implies rooting it out entirely. Formal register.\n• eliminate — remove completely; neutral tone. Often about options, errors, competitors. Less violent.\n• annihilate — destroy completely and violently; extreme. Physical destruction or total defeat."
+    },
+    {
+      "id": 3,
+      "content": "hypernym / hyponym direction\n• hypernym — broader term. destroy is a hypernym of annihilate.\n• hyponym — narrower term. annihilate is a hyponym of destroy.\n• stored as two rows with mirrored values so the graph is traversable from either side."
+    }
+  ],
+  "usecase_notes": [
+    {
+      "usecaseId": 1,
+      "noteId": 1
+    },
+    {
+      "usecaseId": 3,
+      "noteId": 1
+    },
+    {
+      "usecaseId": 5,
+      "noteId": 2
+    },
+    {
+      "usecaseId": 7,
+      "noteId": 2
+    },
+    {
+      "usecaseId": 9,
+      "noteId": 2
+    },
+    {
+      "usecaseId": 13,
+      "noteId": 3
+    },
+    {
+      "usecaseId": 9,
+      "noteId": 3
+    }
+  ],
+  "vocabulary": [
+    {
+      "userId": 1,
+      "usecaseId": 1,
+      "lastRepetitionDate": "2026-10-06T14:57:14.000Z",
+      "overallScore": 42,
+      "repetitionsCount": 3,
+      "imgUrl": null,
+      "description": null,
+      "translation": null,
+      "rudeness": 0,
+      "formality": 0
+    },
+    {
+      "userId": 1,
+      "usecaseId": 5,
+      "lastRepetitionDate": null,
+      "overallScore": 10,
+      "repetitionsCount": 1,
+      "imgUrl": null,
+      "description": "Alice's note: only used in formal writing",
+      "translation": null,
+      "rudeness": 0,
+      "formality": 2
+    }
+  ]
+}
