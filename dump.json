@@ -3,8 +3,7 @@
     {
       "id": 1,
       "name": "Alice",
-      "username": "alice",
-      "xp": 120
+      "username": "alice"
     }
   ],
   "languages": [
@@ -84,6 +83,9 @@
   "usecases": [
     {
       "id": 1,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to destroy or damage metal or stone by chemical action (acid, rust, oxidation)",
       "translation": "разъедать (о кислоте, ржавчине)",
@@ -92,6 +94,9 @@
     },
     {
       "id": 2,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to gradually destroy or undermine a feeling, relationship, or quality",
       "translation": "подтачивать, разъедать (перен.)",
@@ -100,6 +105,9 @@
     },
     {
       "id": 3,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to wear away the surface of rock, soil, or land by wind, water, or other natural forces",
       "translation": "размывать, выветривать",
@@ -108,6 +116,9 @@
     },
     {
       "id": 4,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to gradually weaken or destroy something abstract such as trust, power, or value",
       "translation": "подрывать, постепенно ослаблять",
@@ -116,6 +127,9 @@
     },
     {
       "id": 5,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to destroy or get rid of something completely, especially something bad and widespread",
       "translation": "искоренять, уничтожать полностью",
@@ -124,6 +138,9 @@
     },
     {
       "id": 6,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to wipe out a disease, pest, or invasive species completely",
       "translation": "истреблять, ликвидировать (болезнь)",
@@ -132,6 +149,9 @@
     },
     {
       "id": 7,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to completely remove or get rid of something, often neutral in tone",
       "translation": "устранять, удалять",
@@ -140,6 +160,9 @@
     },
     {
       "id": 8,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to defeat a competitor so that they leave a tournament",
       "translation": "выбивать, исключать (из соревнования)",
@@ -148,6 +171,9 @@
     },
     {
       "id": 9,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to destroy something completely and violently; extreme physical destruction",
       "translation": "уничтожать, аннигилировать",
@@ -156,6 +182,9 @@
     },
     {
       "id": 10,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to defeat an opponent overwhelmingly",
       "translation": "разгромить, разнести в пух и прах",
@@ -164,6 +193,9 @@
     },
     {
       "id": 11,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to destroy something completely so that no trace remains; often dramatic",
       "translation": "стирать с лица земли, уничтожать",
@@ -172,6 +204,9 @@
     },
     {
       "id": 12,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to kill all members of a group, especially pests or a targeted population",
       "translation": "истреблять, уничтожать поголовно",
@@ -180,6 +215,9 @@
     },
     {
       "id": 13,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to damage something so badly that it no longer exists or can be used",
       "translation": "разрушать, уничтожать",
@@ -188,6 +226,9 @@
     },
     {
       "id": 14,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to harm something so that it is less useful or valuable",
       "translation": "повреждать, наносить ущерб",
@@ -196,6 +237,9 @@
     },
     {
       "id": 15,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to take something away from a place or position",
       "translation": "удалять, убирать",
@@ -204,6 +248,9 @@
     },
     {
       "id": 16,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to make or become less strong",
       "translation": "ослаблять",
@@ -212,6 +259,9 @@
     },
     {
       "id": 17,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to bring something into existence",
       "translation": "создавать",
@@ -220,6 +270,9 @@
     },
     {
       "id": 18,
+      "scope": "app",
+      "userId": null,
+      "parentId": null,
       "imgUrl": null,
       "description": "to construct something by putting parts together",
       "translation": "строить, возводить",
@@ -475,172 +528,172 @@
     {
       "leftUsecaseId": 1,
       "rightUsecaseId": 3,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 3,
       "rightUsecaseId": 1,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 5,
       "rightUsecaseId": 7,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 7,
       "rightUsecaseId": 5,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 7,
       "rightUsecaseId": 9,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 9,
       "rightUsecaseId": 7,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 5,
       "rightUsecaseId": 9,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 9,
       "rightUsecaseId": 5,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 9,
       "rightUsecaseId": 11,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 11,
       "rightUsecaseId": 9,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 5,
       "rightUsecaseId": 12,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 12,
       "rightUsecaseId": 5,
-      "value": "synonym"
+      "relationId": 1
     },
     {
       "leftUsecaseId": 13,
       "rightUsecaseId": 17,
-      "value": "antonym"
+      "relationId": 2
     },
     {
       "leftUsecaseId": 17,
       "rightUsecaseId": 13,
-      "value": "antonym"
+      "relationId": 2
     },
     {
       "leftUsecaseId": 13,
       "rightUsecaseId": 18,
-      "value": "antonym"
+      "relationId": 2
     },
     {
       "leftUsecaseId": 18,
       "rightUsecaseId": 13,
-      "value": "antonym"
+      "relationId": 2
     },
     {
       "leftUsecaseId": 7,
       "rightUsecaseId": 17,
-      "value": "antonym"
+      "relationId": 2
     },
     {
       "leftUsecaseId": 17,
       "rightUsecaseId": 7,
-      "value": "antonym"
+      "relationId": 2
     },
     {
       "leftUsecaseId": 13,
       "rightUsecaseId": 9,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 9,
-      "rightUsecaseId": 13,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 13,
       "rightUsecaseId": 5,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 5,
-      "rightUsecaseId": 13,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 13,
       "rightUsecaseId": 11,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 11,
-      "rightUsecaseId": 13,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 13,
       "rightUsecaseId": 12,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 12,
-      "rightUsecaseId": 13,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 15,
       "rightUsecaseId": 7,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 7,
-      "rightUsecaseId": 15,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 16,
       "rightUsecaseId": 3,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 3,
-      "rightUsecaseId": 16,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 14,
       "rightUsecaseId": 1,
-      "value": "hypernym"
-    },
-    {
-      "leftUsecaseId": 1,
-      "rightUsecaseId": 14,
-      "value": "hyponym"
+      "relationId": 3
     },
     {
       "leftUsecaseId": 14,
       "rightUsecaseId": 3,
-      "value": "hypernym"
+      "relationId": 3
+    },
+    {
+      "leftUsecaseId": 9,
+      "rightUsecaseId": 13,
+      "relationId": 4
+    },
+    {
+      "leftUsecaseId": 5,
+      "rightUsecaseId": 13,
+      "relationId": 4
+    },
+    {
+      "leftUsecaseId": 11,
+      "rightUsecaseId": 13,
+      "relationId": 4
+    },
+    {
+      "leftUsecaseId": 12,
+      "rightUsecaseId": 13,
+      "relationId": 4
+    },
+    {
+      "leftUsecaseId": 7,
+      "rightUsecaseId": 15,
+      "relationId": 4
+    },
+    {
+      "leftUsecaseId": 3,
+      "rightUsecaseId": 16,
+      "relationId": 4
+    },
+    {
+      "leftUsecaseId": 1,
+      "rightUsecaseId": 14,
+      "relationId": 4
     },
     {
       "leftUsecaseId": 3,
       "rightUsecaseId": 14,
-      "value": "hyponym"
+      "relationId": 4
     }
   ],
   "notes": [
@@ -654,7 +707,7 @@
     },
     {
       "id": 3,
-      "content": "hypernym / hyponym direction\n• hypernym — broader term. destroy is a hypernym of annihilate.\n• hyponym — narrower term. annihilate is a hyponym of destroy.\n• stored as two rows with mirrored values so the graph is traversable from either side."
+      "content": "hypernym / hyponym direction\n• hypernym — broader term. destroy is a hypernym of annihilate.\n• hyponym — narrower term. annihilate is a hyponym of destroy.\n• stored as mirrored rows so the graph is traversable from either side."
     }
   ],
   "usecase_notes": [
@@ -691,26 +744,16 @@
     {
       "userId": 1,
       "usecaseId": 1,
-      "lastRepetitionDate": "2026-10-06T14:57:14.000Z",
-      "overallScore": 42,
-      "repetitionsCount": 3,
-      "imgUrl": null,
-      "description": null,
-      "translation": null,
-      "rudeness": 0,
-      "formality": 0
+      "score": 42,
+      "lastRepetitionDate": "2026-10-07T14:50:41.000Z",
+      "repetitionsCount": 3
     },
     {
       "userId": 1,
       "usecaseId": 5,
+      "score": 10,
       "lastRepetitionDate": null,
-      "overallScore": 10,
-      "repetitionsCount": 1,
-      "imgUrl": null,
-      "description": "Alice's note: only used in formal writing",
-      "translation": null,
-      "rudeness": 0,
-      "formality": 2
+      "repetitionsCount": 1
     }
   ]
 }

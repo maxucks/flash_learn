@@ -4,8 +4,9 @@
     "dev": "bun run --hot src/index.ts",
     "db:gen": "bun run drizzle-kit generate",
     "db:migrate": "bun run drizzle-kit migrate",
-    "db:apply": "bun run db:gen && bun run db:migrate",
-    "db:seed": "bun run scripts/seed.ts"
+    "db:seed": "bun run scripts/seed.ts",
+    "db:dump": "bun run scripts/dump.ts",
+    "db:refresh": "rm -f data.db && touch data.db && bun run db:gen && bun run db:migrate && bun run db:seed && bun run db:dump"
   },
   "dependencies": {
     "@hono/standard-validator": "^0.4.0",

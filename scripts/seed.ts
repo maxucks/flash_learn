@@ -1,37 +1,48 @@
+import { eq, sql } from "drizzle-orm"
 import { db } from "../src/db"
 import * as s from "../src/schema"
 
-function rel(a: number, b: number, value: string) {
+// ---- helpers ----------------------------------------------------------------
+
+// Symmetric relation: user can traverse either direction, so we store both rows.
+function symRelation(relationId: number, a: number, b: number) {
   return [
-    { leftUsecaseId: a, rightUsecaseId: b, value },
-    { leftUsecaseId: b, rightUsecaseId: a, value },
+    { leftUsecaseId: a, rightUsecaseId: b, relationId },
+    { leftUsecaseId: b, rightUsecaseId: a, relationId },
   ]
 }
 
-function dir(a: number, b: number, forward: string, backward: string) {
+// Directional relation: forward + backward use the SAME relationId now.
+// Direction is a property of the `relations` row, not the pair. If you need
+// "hypernym/hyponym" as two distinct names, you need two relation rows.
+function dirRelation(relationId: number, a: number, b: number) {
   return [
-    { leftUsecaseId: a, rightUsecaseId: b, value: forward },
-    { leftUsecaseId: b, rightUsecaseId: a, value: backward },
+    { leftUsecaseId: a, rightUsecaseId: b, relationId },
+    { leftUsecaseId: b, rightUsecaseId: a, relationId },
   ]
 }
 
 async function main() {
+  // ---- wipe (children first) -----------------------------------------------
   await db.delete(s.vocabulary)
   await db.delete(s.usecaseNotes)
   await db.delete(s.notes)
   await db.delete(s.examples)
   await db.delete(s.usecasesRelations)
+  await db.delete(s.relations)
   await db.delete(s.wordsUsecases)
   await db.delete(s.usecases)
   await db.delete(s.words)
   await db.delete(s.languages)
   await db.delete(s.users)
 
+  // ---- language ------------------------------------------------------------
   const [eng] = await db
     .insert(s.languages)
     .values([{ name: "English", icon: "🇬🇧" }])
     .returning()
 
+  // ---- words ---------------------------------------------------------------
   const wordValues = [
     "corrode",
     "erode",
@@ -55,8 +66,9 @@ async function main() {
 
   const W = Object.fromEntries(wordRows.map((w) => [w.value, w.id])) as Record<string, number>
 
+  // ---- usecase seeds -------------------------------------------------------
   type Seed = {
-    word: keyof typeof W
+    word: string
     usedAs: string
     description: string
     translation: string
@@ -66,7 +78,7 @@ async function main() {
   }
 
   const seeds: Seed[] = [
-    // ---------- corrode ----------
+    // corrode
     {
       word: "corrode",
       usedAs: "verb",
@@ -74,7 +86,10 @@ async function main() {
       translation: "разъедать (о кислоте, ржавчине)",
       rudeness: 0,
       formality: 1,
-      examples: ["Acid rain corroded the bronze statue.", "Salt water corrodes the hull of the ship."],
+      examples: [
+        "Acid rain corroded the bronze statue.",
+        "Salt water corrodes the hull of the ship.",
+      ],
     },
     {
       word: "corrode",
@@ -85,32 +100,39 @@ async function main() {
       formality: 1,
       examples: ["Jealousy corroded their friendship over the years."],
     },
-
-    // ---------- erode ----------
+    // erode
     {
       word: "erode",
       usedAs: "verb",
-      description: "to wear away the surface of rock, soil, or land by wind, water, or other natural forces",
+      description:
+        "to wear away the surface of rock, soil, or land by wind, water, or other natural forces",
       translation: "размывать, выветривать",
       rudeness: 0,
       formality: 1,
-      examples: ["The river eroded the canyon walls over millions of years.", "Wind erosion shaped the desert rocks."],
+      examples: [
+        "The river eroded the canyon walls over millions of years.",
+        "Wind erosion shaped the desert rocks.",
+      ],
     },
     {
       word: "erode",
       usedAs: "verb",
-      description: "to gradually weaken or destroy something abstract such as trust, power, or value",
+      description:
+        "to gradually weaken or destroy something abstract such as trust, power, or value",
       translation: "подрывать, постепенно ослаблять",
       rudeness: 0,
       formality: 1,
-      examples: ["Inflation erodes people's savings.", "Repeated scandals eroded public trust in the government."],
+      examples: [
+        "Inflation erodes people's savings.",
+        "Repeated scandals eroded public trust in the government.",
+      ],
     },
-
-    // ---------- eradicate ----------
+    // eradicate
     {
       word: "eradicate",
       usedAs: "verb",
-      description: "to destroy or get rid of something completely, especially something bad and widespread",
+      description:
+        "to destroy or get rid of something completely, especially something bad and widespread",
       translation: "искоренять, уничтожать полностью",
       rudeness: 0,
       formality: 2,
@@ -128,8 +150,7 @@ async function main() {
       formality: 2,
       examples: ["Smallpox was eradicated worldwide in 1980."],
     },
-
-    // ---------- eliminate ----------
+    // eliminate
     {
       word: "eliminate",
       usedAs: "verb",
@@ -151,8 +172,7 @@ async function main() {
       formality: 1,
       examples: ["The team was eliminated in the semifinals."],
     },
-
-    // ---------- annihilate ----------
+    // annihilate
     {
       word: "annihilate",
       usedAs: "verb",
@@ -160,7 +180,10 @@ async function main() {
       translation: "уничтожать, аннигилировать",
       rudeness: 1,
       formality: 1,
-      examples: ["The bomb annihilated the entire block.", "A single hurricane can annihilate coastal towns."],
+      examples: [
+        "The bomb annihilated the entire block.",
+        "A single hurricane can annihilate coastal towns.",
+      ],
     },
     {
       word: "annihilate",
@@ -171,8 +194,7 @@ async function main() {
       formality: 0,
       examples: ["They annihilated the opposing team 10–0."],
     },
-
-    // ---------- obliterate ----------
+    // obliterate
     {
       word: "obliterate",
       usedAs: "verb",
@@ -180,10 +202,12 @@ async function main() {
       translation: "стирать с лица земли, уничтожать",
       rudeness: 1,
       formality: 1,
-      examples: ["The explosion obliterated the building.", "Time obliterated all evidence of the settlement."],
+      examples: [
+        "The explosion obliterated the building.",
+        "Time obliterated all evidence of the settlement.",
+      ],
     },
-
-    // ---------- exterminate ----------
+    // exterminate
     {
       word: "exterminate",
       usedAs: "verb",
@@ -196,8 +220,7 @@ async function main() {
         "The regime tried to exterminate the entire ethnic group.",
       ],
     },
-
-    // ---------- destroy ----------
+    // destroy
     {
       word: "destroy",
       usedAs: "verb",
@@ -205,10 +228,12 @@ async function main() {
       translation: "разрушать, уничтожать",
       rudeness: 0,
       formality: 1,
-      examples: ["The fire destroyed the warehouse.", "The earthquake destroyed hundreds of homes."],
+      examples: [
+        "The fire destroyed the warehouse.",
+        "The earthquake destroyed hundreds of homes.",
+      ],
     },
-
-    // ---------- damage ----------
+    // damage
     {
       word: "damage",
       usedAs: "verb",
@@ -218,8 +243,7 @@ async function main() {
       formality: 1,
       examples: ["The storm damaged the roof.", "Smoking damages your lungs."],
     },
-
-    // ---------- remove ----------
+    // remove
     {
       word: "remove",
       usedAs: "verb",
@@ -227,10 +251,12 @@ async function main() {
       translation: "удалять, убирать",
       rudeness: 0,
       formality: 1,
-      examples: ["Please remove your shoes before entering.", "The surgeon removed the tumor successfully."],
+      examples: [
+        "Please remove your shoes before entering.",
+        "The surgeon removed the tumor successfully.",
+      ],
     },
-
-    // ---------- weaken ----------
+    // weaken
     {
       word: "weaken",
       usedAs: "verb",
@@ -240,8 +266,7 @@ async function main() {
       formality: 1,
       examples: ["The illness weakened him considerably."],
     },
-
-    // ---------- create ----------
+    // create
     {
       word: "create",
       usedAs: "verb",
@@ -251,8 +276,7 @@ async function main() {
       formality: 1,
       examples: ["She created a beautiful painting."],
     },
-
-    // ---------- build ----------
+    // build
     {
       word: "build",
       usedAs: "verb",
@@ -260,14 +284,21 @@ async function main() {
       translation: "строить, возводить",
       rudeness: 0,
       formality: 1,
-      examples: ["They built a new bridge over the river.", "She built a successful career from scratch."],
+      examples: [
+        "They built a new bridge over the river.",
+        "She built a successful career from scratch.",
+      ],
     },
   ]
 
+  // ---- usecases (app-scoped) ----------------------------------------------
   const usecaseRows = await db
     .insert(s.usecases)
     .values(
       seeds.map((u) => ({
+        scope: "app" as const,
+        userId: null,
+        parentId: null,
         imgUrl: null,
         description: u.description,
         translation: u.translation,
@@ -277,13 +308,17 @@ async function main() {
     )
     .returning()
 
-  const U = {} as Record<string, number[]>
+  // map word -> usecase ids, and pick first as the "primary" for relations
+  const U: Record<string, number[]> = {}
   seeds.forEach((u, i) => {
     ;(U[u.word] ??= []).push(usecaseRows[i].id)
   })
+  const P = Object.fromEntries(Object.entries(U).map(([w, ids]) => [w, ids[0]])) as Record<
+    string,
+    number
+  >
 
-  const P = Object.fromEntries(Object.entries(U).map(([w, ids]) => [w, ids[0]])) as Record<string, number>
-
+  // ---- words <-> usecases --------------------------------------------------
   await db.insert(s.wordsUsecases).values(
     seeds.map((u, i) => ({
       wordId: W[u.word],
@@ -292,35 +327,75 @@ async function main() {
     })),
   )
 
+  // ---- examples ------------------------------------------------------------
   await db
     .insert(s.examples)
-    .values(seeds.flatMap((u, i) => u.examples.map((value) => ({ usecaseId: usecaseRows[i].id, value }))))
+    .values(
+      seeds.flatMap((u, i) => u.examples.map((value) => ({ usecaseId: usecaseRows[i].id, value }))),
+    )
 
+  // ---- relations configs ---------------------------------------------------
+  // NOTE: your new `relations.name` is globally UNIQUE (not per-scope).
+  // So "synonym" cannot exist both as app and as user. Fine for seeds — all app.
+  const relationRows = await db
+    .insert(s.relations)
+    .values([
+      { scope: "app", userId: null, name: "synonym", direction: "bidirectional" },
+      { scope: "app", userId: null, name: "antonym", direction: "bidirectional" },
+      { scope: "app", userId: null, name: "hypernym", direction: "unidirectional" },
+      { scope: "app", userId: null, name: "hyponym", direction: "unidirectional" },
+    ])
+    .returning()
+
+  const R = Object.fromEntries(relationRows.map((r) => [r.name, r.id])) as Record<string, number>
+
+  // ---- usecase relations ---------------------------------------------------
+  // Because `usecases_relations` PK is (left, right, relationId) and relations
+  // are directional, we store BOTH rows for every relation. Traversal logic
+  // reads direction from the `relations` row + which side you're on.
+  //
+  // Hypernym/hyponym: the OLD schema stored mirrored *values*. The NEW schema
+  // has no `value` column on the pair — instead you record (destroy → annihilate,
+  // relationId = hypernym) AND (destroy → annihilate, relationId = hyponym)?
+  // That's ambiguous. Cleanest model below: use ONE direction = 'unidirectional'
+  // and store (hypernym → hyponym). The inverse is inferred by flipping sides.
   await db.insert(s.usecasesRelations).values([
-    // synonyms (symmetric → both directions)
-    ...rel(P.corrode, P.erode, "synonym"),
-    ...rel(P.eradicate, P.eliminate, "synonym"),
-    ...rel(P.eliminate, P.annihilate, "synonym"),
-    ...rel(P.eradicate, P.annihilate, "synonym"),
-    ...rel(P.annihilate, P.obliterate, "synonym"),
-    ...rel(P.eradicate, P.exterminate, "synonym"),
+    // synonyms (bidirectional → 2 rows)
+    ...symRelation(R.synonym, P.corrode, P.erode),
+    ...symRelation(R.synonym, P.eradicate, P.eliminate),
+    ...symRelation(R.synonym, P.eliminate, P.annihilate),
+    ...symRelation(R.synonym, P.eradicate, P.annihilate),
+    ...symRelation(R.synonym, P.annihilate, P.obliterate),
+    ...symRelation(R.synonym, P.eradicate, P.exterminate),
 
-    // antonyms (symmetric → both directions)
-    ...rel(P.destroy, P.create, "antonym"),
-    ...rel(P.destroy, P.build, "antonym"),
-    ...rel(P.eliminate, P.create, "antonym"),
+    // antonyms (bidirectional → 2 rows)
+    ...symRelation(R.antonym, P.destroy, P.create),
+    ...symRelation(R.antonym, P.destroy, P.build),
+    ...symRelation(R.antonym, P.eliminate, P.create),
 
-    // hypernym / hyponym (directional → both directions, mirrored value)
-    ...dir(P.destroy, P.annihilate, "hypernym", "hyponym"),
-    ...dir(P.destroy, P.eradicate, "hypernym", "hyponym"),
-    ...dir(P.destroy, P.obliterate, "hypernym", "hyponym"),
-    ...dir(P.destroy, P.exterminate, "hypernym", "hyponym"),
-    ...dir(P.remove, P.eliminate, "hypernym", "hyponym"),
-    ...dir(P.weaken, P.erode, "hypernym", "hyponym"),
-    ...dir(P.damage, P.corrode, "hypernym", "hyponym"),
-    ...dir(P.damage, P.erode, "hypernym", "hyponym"),
+    // hypernym: broader → narrower. One row per pair.
+    { leftUsecaseId: P.destroy, rightUsecaseId: P.annihilate, relationId: R.hypernym },
+    { leftUsecaseId: P.destroy, rightUsecaseId: P.eradicate, relationId: R.hypernym },
+    { leftUsecaseId: P.destroy, rightUsecaseId: P.obliterate, relationId: R.hypernym },
+    { leftUsecaseId: P.destroy, rightUsecaseId: P.exterminate, relationId: R.hypernym },
+    { leftUsecaseId: P.remove, rightUsecaseId: P.eliminate, relationId: R.hypernym },
+    { leftUsecaseId: P.weaken, rightUsecaseId: P.erode, relationId: R.hypernym },
+    { leftUsecaseId: P.damage, rightUsecaseId: P.corrode, relationId: R.hypernym },
+    { leftUsecaseId: P.damage, rightUsecaseId: P.erode, relationId: R.hypernym },
+
+    // hyponym: narrower → broader (mirror rows so you can query both directions
+    // without CASE logic; relation id is the same pair-type but flipped sides)
+    { leftUsecaseId: P.annihilate, rightUsecaseId: P.destroy, relationId: R.hyponym },
+    { leftUsecaseId: P.eradicate, rightUsecaseId: P.destroy, relationId: R.hyponym },
+    { leftUsecaseId: P.obliterate, rightUsecaseId: P.destroy, relationId: R.hyponym },
+    { leftUsecaseId: P.exterminate, rightUsecaseId: P.destroy, relationId: R.hyponym },
+    { leftUsecaseId: P.eliminate, rightUsecaseId: P.remove, relationId: R.hyponym },
+    { leftUsecaseId: P.erode, rightUsecaseId: P.weaken, relationId: R.hyponym },
+    { leftUsecaseId: P.corrode, rightUsecaseId: P.damage, relationId: R.hyponym },
+    { leftUsecaseId: P.erode, rightUsecaseId: P.damage, relationId: R.hyponym },
   ])
 
+  // ---- notes ---------------------------------------------------------------
   const noteRows = await db
     .insert(s.notes)
     .values([
@@ -343,7 +418,7 @@ async function main() {
           "hypernym / hyponym direction\n" +
           "• hypernym — broader term. destroy is a hypernym of annihilate.\n" +
           "• hyponym — narrower term. annihilate is a hyponym of destroy.\n" +
-          "• stored as two rows with mirrored values so the graph is traversable from either side.",
+          "• stored as mirrored rows so the graph is traversable from either side.",
       },
     ])
     .returning()
@@ -360,28 +435,32 @@ async function main() {
     { usecaseId: P.annihilate, noteId: noteRows[2].id },
   ])
 
-  const [alice] = await db.insert(s.users).values({ name: "Alice", username: "alice", xp: 120 }).returning()
+  // ---- user + vocabulary ---------------------------------------------------
+  const [alice] = await db.insert(s.users).values({ name: "Alice", username: "alice" }).returning()
 
   await db.insert(s.vocabulary).values([
     {
       userId: alice.id,
       usecaseId: P.corrode,
-      overallScore: 42,
+      score: 42,
       repetitionsCount: 3,
       lastRepetitionDate: new Date(),
     },
     {
       userId: alice.id,
       usecaseId: P.eradicate,
-      description: "Alice's note: only used in formal writing",
-      rudeness: 0,
-      formality: 2,
-      overallScore: 10,
+      // NOTE: shadowing fields (description/rudeness/formality) were REMOVED
+      // from `vocabulary` in your new schema. To override for a user, you now
+      // create a *user-scoped usecase* with parentId = original usecase.
+      score: 10,
       repetitionsCount: 1,
     },
   ])
 
-  console.log(`seeded: ${wordRows.length} words, ${usecaseRows.length} usecases, ` + `${noteRows.length} notes, 1 user`)
+  console.log(
+    `seeded: ${wordRows.length} words, ${usecaseRows.length} usecases, ` +
+      `${relationRows.length} relations, ${noteRows.length} notes, 1 user`,
+  )
 }
 
 main().catch((err) => {

@@ -1,5 +1,5 @@
 import { db } from "../src/db"
-import * as s from "./schema"
+import * as s from "../src/schema"
 import { writeFileSync } from "fs"
 
 async function main() {
