@@ -6,8 +6,15 @@ import {
   primaryKey,
   check,
   index,
-  SQLiteTableWithColumns,
+  AnySQLiteColumn,
+  uniqueIndex,
 } from "drizzle-orm/sqlite-core"
+
+export const SCOPE_VALUES = ["app", "user"] as const
+export const RELATION_DIR_VALUES = ["unidirectional", "bidirectional"] as const
+
+export type Scope = (typeof SCOPE_VALUES)[number]
+export type RelationDirection = (typeof RELATION_DIR_VALUES)[number]
 
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -29,20 +36,23 @@ export const words = sqliteTable("words", {
   value: text("value").notNull(),
 })
 
-// userId is null on scope='app'
-// parentId is for content shadowing for users. So with parentId set, userId should be set as well
-export const usecases: SQLiteTableWithColumns<any> = sqliteTable(
+export const usecases = sqliteTable(
   "usecases",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    scope: text("scope", { enum: ["app", "user"] }).notNull(),
-    userId: integer("user_id").references(() => users.id, { onDelete: "cascade" }),
-    parentId: integer("parent_id").references(() => usecases.id, { onDelete: "set null" }),
+    scope: text("scope", { enum: SCOPE_VALUES }).notNull(),
+    userId: integer("user_id").references(() => users.id, {
+      onDelete: "cascade",
+    }),
+    parentId: integer("parent_id").references((): AnySQLiteColumn => usecases.id, {
+      onDelete: "set null",
+    }),
     imgUrl: text("img_url"),
     description: text("description"),
     translation: text("translation"),
     rudeness: integer("rudeness").notNull().default(0),
     formality: integer("formality").notNull().default(0),
+    connotation: integer("connotation").notNull().default(0),
   },
   (t) => [
     check(
@@ -85,12 +95,15 @@ export const relations = sqliteTable(
   "relations",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    scope: text("scope", { enum: ["app", "user"] }).notNull(),
-    userId: integer("user_id").references(() => users.id, { onDelete: "cascade" }),
-    name: text("name").notNull().unique(),
-    direction: text("direction", { enum: ["unidirectional", "bidirectional"] }).notNull(),
+    scope: text("scope", { enum: SCOPE_VALUES }).notNull(),
+    userId: integer("user_id").references(() => users.id, {
+      onDelete: "cascade",
+    }),
+    name: text("name").notNull(),
+    direction: text("direction", { enum: RELATION_DIR_VALUES }).notNull(),
   },
   (t) => [
+    uniqueIndex("idx_relations_scope_user_name").on(t.scope, t.userId, t.name),
     check(
       "relations_scope_rules",
       sql`(

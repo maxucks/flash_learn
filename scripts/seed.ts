@@ -1,6 +1,6 @@
 import { eq, sql } from "drizzle-orm"
-import { db } from "../src/db"
-import * as s from "../src/schema"
+import * as s from "../src/data/schema"
+import { db } from "../src/dependencies"
 
 // ---- helpers ----------------------------------------------------------------
 
